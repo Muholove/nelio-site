@@ -1,0 +1,94 @@
+:root {
+  font-family: 'Roboto', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  
+  color-scheme: light dark;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, rgba(248,247,252,1) 0%, rgba(255,255,255,1) 100%) !important;
+  color: #111111 !important;
+}
+
+html {
+  background: linear-gradient(180deg, rgba(248,247,252,1) 0%, rgba(255,255,255,1) 100%) !important;
+}
+
+#root {
+  background: transparent !important;
+  min-height: 100vh;
+}
+
+// Modern CSS Animations
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.02); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(211,47,47,0.4); }
+  50% { box-shadow: 0 0 30px rgba(211,47,47,0.7); }
+}
+
+// Theme variables - Red Premium
+$dark-bg: #0A0A0F;
+$dark-paper: #1A1A24;
+$light-bg: #F8F7FC;
+$light-paper: #FFFFFF;
+$primary-color: #D32F2F;
+$primary-light: #EF5350;
+$primary-dark: #B71C1C;
+$secondary-color: #F06292;
+$secondary-light: #FF6E9C;
+$text-light: #FFFFFF;
+$text-dark: #111111;
+
+// Dark theme specific styles
+.dark-theme {
+  background-color: $dark-bg;
+  color: $text-light;
+  
+  .MuiPaper-root {
+    background-color: $dark-paper;
+  }
+}
+
+// Light theme specific styles
+.light-theme {
+  background-color: $light-bg;
+  color: $text-dark;
+  
+  .MuiPaper-root {
+    background-color: $light-paper;
+  }
+} 
