@@ -907,16 +907,31 @@ I'm sending the payment from my wallet. Please confirm the transaction and provi
                   </Grid>
                 </Grid>
                   {telegramUsername && (
-                  <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
                     <ChatButton
                       telegramUrl={telegramHref}
                       zangiUrl={zangiUrl}
-                      variant="text"
+                      variant="contained"
                       sx={{ 
-                        color: theme.palette.primary.main, 
-                        fontWeight: 'bold',
+                        background: 'linear-gradient(135deg, #0088cc 0%, #00BFA5 100%)',
+                        color: 'white',
+                        fontWeight: 700,
+                        fontSize: '1rem',
+                        px: 4,
+                        py: 1.5,
+                        borderRadius: 3,
+                        boxShadow: '0 4px 15px rgba(0,136,204,0.3)',
+                        textTransform: 'none',
+                        '&:hover': {
+                          background: 'linear-gradient(135deg, #0077b3 0%, #00a88f 100%)',
+                          boxShadow: '0 6px 20px rgba(0,136,204,0.4)',
+                          transform: 'translateY(-2px)',
+                        },
                         '& .MuiButton-startIcon': {
-                          color: theme.palette.primary.main
+                          color: 'white'
+                        },
+                        '& .MuiButton-endIcon': {
+                          color: 'white'
                         }
                       }}
                     />
@@ -1053,11 +1068,33 @@ I'm sending the payment from my wallet. Please confirm the transaction and provi
                 </Box>
               );
             }).filter(Boolean)}
-            <Box sx={{ mt: 2, textAlign: 'center' }}>
+            <Box sx={{ mt: 3, textAlign: 'center' }}>
               <ChatButton
                 telegramUrl={telegramHref}
                 zangiUrl={zangiUrl}
-                variant="outlined"
+                variant="contained"
+                sx={{ 
+                  background: 'linear-gradient(135deg, #0088cc 0%, #00BFA5 100%)',
+                  color: 'white',
+                  fontWeight: 700,
+                  fontSize: '1rem',
+                  px: 4,
+                  py: 1.5,
+                  borderRadius: 3,
+                  boxShadow: '0 4px 15px rgba(0,136,204,0.3)',
+                  textTransform: 'none',
+                  '&:hover': {
+                    background: 'linear-gradient(135deg, #0077b3 0%, #00a88f 100%)',
+                    boxShadow: '0 6px 20px rgba(0,136,204,0.4)',
+                    transform: 'translateY(-2px)',
+                  },
+                  '& .MuiButton-startIcon': {
+                    color: 'white'
+                  },
+                  '& .MuiButton-endIcon': {
+                    color: 'white'
+                  }
+                }}
               />
             </Box>
           </Box>
