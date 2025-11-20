@@ -9,7 +9,6 @@ import Button from '@mui/material/Button';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import TelegramIcon from '@mui/icons-material/Telegram';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -18,6 +17,7 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import CloseIcon from '@mui/icons-material/Close';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
+import ChatButton from '../components/ChatButton';
 // Removed Dialog-based payment options
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -68,7 +68,7 @@ const VideoPlayer: FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { telegramUsername, stripePublishableKey, cryptoWallets, siteName } = useSiteConfig();
+  const { telegramUsername, zangiUrl, stripePublishableKey, cryptoWallets, siteName } = useSiteConfig();
   const [video, setVideo] = useState<Video | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [videoSources, setVideoSources] = useState<Array<{ id: string; source_file_id: string }>>([]);
@@ -907,17 +907,19 @@ I'm sending the payment from my wallet. Please confirm the transaction and provi
                   </Grid>
                 </Grid>
                   {telegramUsername && (
-                  <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                      <Button
+                  <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                    <ChatButton
+                      telegramUrl={telegramHref}
+                      zangiUrl={zangiUrl}
                       variant="text"
-                        startIcon={<TelegramIcon />}
-                        href={telegramHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      sx={{ color: '#229ED9', fontWeight: 'bold' }}
-                    >
-                      Questions? Chat on Telegram
-                      </Button>
+                      sx={{ 
+                        color: theme.palette.primary.main, 
+                        fontWeight: 'bold',
+                        '& .MuiButton-startIcon': {
+                          color: theme.palette.primary.main
+                        }
+                      }}
+                    />
                   </Box>
                   )}
               </Box>
@@ -1052,16 +1054,11 @@ I'm sending the payment from my wallet. Please confirm the transaction and provi
               );
             }).filter(Boolean)}
             <Box sx={{ mt: 2, textAlign: 'center' }}>
-              <Button
+              <ChatButton
+                telegramUrl={telegramHref}
+                zangiUrl={zangiUrl}
                 variant="outlined"
-                color="primary"
-                startIcon={<TelegramIcon />}
-                href={telegramHref}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Contact on Telegram
-              </Button>
+              />
             </Box>
           </Box>
         </Fade>

@@ -11,6 +11,7 @@ interface SiteConfig {
   stripe_publishable_key: string;
   stripe_secret_key: string;
   telegram_username: string;
+  zangi_invite_url?: string;
   video_list_title?: string;
   crypto?: string[];
   email_host?: string;
@@ -36,6 +37,7 @@ interface SiteConfigContextType {
   stripePublishableKey: string;
   stripeSecretKey: string;
   telegramUsername: string;
+  zangiUrl: string;
   videoListTitle: string;
   cryptoWallets: string[];
   emailHost: string;
@@ -66,6 +68,7 @@ const SiteConfigContext = createContext<SiteConfigContextType>({
   stripePublishableKey: '',
   stripeSecretKey: '',
   telegramUsername: '',
+  zangiUrl: import.meta.env.VITE_ZANGI_INVITE_URL || 'https://services.zangi.com/dl/conversation/5222074953',
   videoListTitle: 'Available Videos',
   cryptoWallets: [],
   emailHost: 'smtp.gmail.com',
@@ -250,6 +253,7 @@ export const SiteConfigProvider = ({ children }: { children: ReactNode }) => {
     stripePublishableKey: config?.stripe_publishable_key || '',
     stripeSecretKey: config?.stripe_secret_key || '',
     telegramUsername: config?.telegram_username || '',
+    zangiUrl: config?.zangi_invite_url || import.meta.env.VITE_ZANGI_INVITE_URL || 'https://services.zangi.com/dl/conversation/5222074953',
     videoListTitle: config?.video_list_title || 'Available Videos',
     cryptoWallets: config?.crypto || [],
     emailHost: config?.email_host || 'smtp.gmail.com',

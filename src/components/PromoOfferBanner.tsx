@@ -5,9 +5,9 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import CheckIcon from '@mui/icons-material/CheckCircleOutline';
-import TelegramIcon from '@mui/icons-material/Telegram';
 import { useSiteConfig } from '../context/SiteConfigContext';
 import { StripeService } from '../services/StripeService';
+import ChatButton from './ChatButton';
 
 interface PromoOfferBannerProps {
   telegramLink?: string; // full URL override
@@ -23,7 +23,7 @@ const getRandomInt = (min: number, max: number) => {
 
 const PromoOfferBanner = ({ telegramLink, telegramUsername, prefilledMessage }: PromoOfferBannerProps) => {
   const [isStripeLoading, setIsStripeLoading] = useState(false);
-  const { stripePublishableKey } = useSiteConfig();
+  const { stripePublishableKey, zangiUrl } = useSiteConfig();
 
   const interestMessage = prefilledMessage || "Hi! I'm interested in the $100 offer including all content. Could you guide me on how to pay?";
   const computedTelegramHref = (() => {
@@ -149,11 +149,9 @@ const PromoOfferBanner = ({ telegramLink, telegramUsername, prefilledMessage }: 
                 </Typography>
 
                 <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                  <Button
-                    href={computedTelegramHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    startIcon={<TelegramIcon />}
+                  <ChatButton
+                    telegramUrl={computedTelegramHref}
+                    zangiUrl={zangiUrl}
                     variant="outlined"
                     size="small"
                     sx={{
@@ -163,9 +161,7 @@ const PromoOfferBanner = ({ telegramLink, telegramUsername, prefilledMessage }: 
                       borderRadius: 1.5,
                       fontSize: '0.85rem',
                     }}
-                  >
-                    Telegram
-                  </Button>
+                  />
                   
                   <Button
                     variant="contained"
