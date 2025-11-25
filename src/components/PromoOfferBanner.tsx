@@ -5,9 +5,9 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import CheckIcon from '@mui/icons-material/CheckCircleOutline';
+import TelegramIcon from '@mui/icons-material/Telegram';
 import { useSiteConfig } from '../context/SiteConfigContext';
 import { StripeService } from '../services/StripeService';
-import ChatButton from './ChatButton';
 
 interface PromoOfferBannerProps {
   telegramLink?: string; // full URL override
@@ -23,7 +23,7 @@ const getRandomInt = (min: number, max: number) => {
 
 const PromoOfferBanner = ({ telegramLink, telegramUsername, prefilledMessage }: PromoOfferBannerProps) => {
   const [isStripeLoading, setIsStripeLoading] = useState(false);
-  const { stripePublishableKey, zangiUrl } = useSiteConfig();
+  const { stripePublishableKey } = useSiteConfig();
 
   const interestMessage = prefilledMessage || "Hi! I'm interested in the $100 offer including all content. Could you guide me on how to pay?";
   const computedTelegramHref = (() => {
@@ -108,18 +108,16 @@ const PromoOfferBanner = ({ telegramLink, telegramUsername, prefilledMessage }: 
           position: 'relative',
           maxWidth: 1200,
           mx: 'auto',
-          borderRadius: { xs: 0, sm: 2.5 },
+          borderRadius: { xs: 0, sm: 2 },
           p: { xs: 2, sm: 2.5 },
           background: theme => theme.palette.mode === 'dark' 
-            ? 'linear-gradient(135deg, rgba(26,26,36,0.95) 0%, rgba(18,18,24,0.98) 100%)'
-            : 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,247,252,0.98) 100%)',
-          backdropFilter: 'blur(20px) saturate(180%)',
-          border: theme => theme.palette.mode === 'dark'
-            ? '1px solid rgba(239,83,80,0.35)'
-            : '1px solid rgba(211,47,47,0.25)',
+            ? 'linear-gradient(135deg, rgba(30,30,30,0.95) 0%, rgba(20,20,20,0.98) 100%)'
+            : 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,250,0.98) 100%)',
+          backdropFilter: 'blur(10px)',
+          border: theme => `1px solid ${theme.palette.divider}`,
           boxShadow: theme => theme.palette.mode === 'dark' 
-            ? '0 8px 32px rgba(239,83,80,0.3), 0 0 0 1px rgba(239,83,80,0.15)'
-            : '0 8px 32px rgba(211,47,47,0.2), 0 0 0 1px rgba(211,47,47,0.08)'
+            ? '0 4px 16px rgba(0,0,0,0.3)'
+            : '0 4px 16px rgba(0,0,0,0.08)'
         }}
       >
         <Grid container spacing={2} alignItems="center">
@@ -134,11 +132,10 @@ const PromoOfferBanner = ({ telegramLink, telegramUsername, prefilledMessage }: 
                     mb: 0.5,
                     fontSize: { xs: '1.25rem', sm: '1.5rem' },
                     background: theme => theme.palette.mode === 'dark'
-                      ? 'linear-gradient(135deg, #FF6659 0%, #FF6E9C 100%)'
-                      : 'linear-gradient(135deg, #D32F2F 0%, #F06292 100%)',
+                      ? 'linear-gradient(90deg, #fff 0%, #aaa 100%)'
+                      : 'linear-gradient(90deg, #000 0%, #555 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
-                    filter: 'drop-shadow(0 2px 8px rgba(211,47,47,0.4))',
                   }}
                 >
                   🎉 Special Offer - All Content $100
@@ -149,9 +146,11 @@ const PromoOfferBanner = ({ telegramLink, telegramUsername, prefilledMessage }: 
                 </Typography>
 
                 <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                  <ChatButton
-                    telegramUrl={computedTelegramHref}
-                    zangiUrl={zangiUrl}
+                  <Button
+                    href={computedTelegramHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    startIcon={<TelegramIcon />}
                     variant="outlined"
                     size="small"
                     sx={{
@@ -161,7 +160,9 @@ const PromoOfferBanner = ({ telegramLink, telegramUsername, prefilledMessage }: 
                       borderRadius: 1.5,
                       fontSize: '0.85rem',
                     }}
-                  />
+                  >
+                    Telegram
+                  </Button>
                   
                   <Button
                     variant="contained"
@@ -188,15 +189,10 @@ const PromoOfferBanner = ({ telegramLink, telegramUsername, prefilledMessage }: 
           {/* Benefits - Mais compacto */}
           <Grid item xs={12} md={4}>
             <Box sx={{
-              border: theme => theme.palette.mode === 'dark'
-                ? '1px solid rgba(239,83,80,0.35)'
-                : '1px solid rgba(211,47,47,0.25)',
-              borderRadius: 2,
+              border: theme => `1px solid ${theme.palette.divider}`,
+              borderRadius: 1.5,
               p: 1.5,
-              background: theme => theme.palette.mode === 'dark' 
-                ? 'linear-gradient(135deg, rgba(239,83,80,0.12) 0%, rgba(229,57,53,0.08) 100%)'
-                : 'linear-gradient(135deg, rgba(211,47,47,0.08) 0%, rgba(240,98,146,0.05) 100%)',
-              backdropFilter: 'blur(10px)',
+              backgroundColor: theme => theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)'
             }}>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.75 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>

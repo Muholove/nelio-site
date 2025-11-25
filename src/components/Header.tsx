@@ -89,39 +89,23 @@ const Header: FC = () => {
             sx={{
               display: 'flex',
               alignItems: 'center',
-              background: mode === 'dark' 
-                ? 'linear-gradient(135deg, #EF5350 0%, #E53935 100%)' 
-                : 'transparent',
-              borderRadius: '10px',
+              background: mode === 'dark' ? 'linear-gradient(to right, #d32f2f 0%, #b71c1c 100%)' : 'transparent',
+              borderRadius: '8px',
               px: 1.5,
               py: 0.5,
               mr: 1,
-              border: mode === 'dark' 
-                ? 'none' 
-                : '2px solid transparent',
-              backgroundImage: mode === 'dark'
-                ? undefined
-                : 'linear-gradient(white, white), linear-gradient(135deg, #D32F2F, #F06292)',
-              backgroundOrigin: mode === 'dark' ? undefined : 'border-box',
-              backgroundClip: mode === 'dark' ? undefined : 'padding-box, border-box',
-              boxShadow: mode === 'dark' 
-                ? '0 4px 12px rgba(239,83,80,0.5)' 
-                : '0 2px 8px rgba(211,47,47,0.2)',
+              border: mode === 'dark' ? 'none' : '1px solid rgba(0,0,0,0.08)',
+              boxShadow: mode === 'dark' ? '0 2px 8px rgba(0, 0, 0, 0.3)' : 'none',
             }}
           >
             <Typography
               variant="h6"
               sx={{
-                fontWeight: 800,
+                fontWeight: 700,
                 letterSpacing: '0.5px',
                 fontFamily: "'Montserrat', sans-serif",
                 fontSize: { xs: '0.9rem', sm: '1.1rem' },
-                background: mode === 'dark' 
-                  ? 'white'
-                  : 'linear-gradient(135deg, #D32F2F 0%, #F06292 100%)',
-                WebkitBackgroundClip: mode === 'dark' ? undefined : 'text',
-                WebkitTextFillColor: mode === 'dark' ? 'white' : 'transparent',
-                color: mode === 'dark' ? 'white' : undefined,
+                color: mode === 'dark' ? 'white' : '#111',
               }}
             >
               {siteName.split(' ')[0]}

@@ -8,6 +8,7 @@ import { Chip, CircularProgress, Button, Dialog, DialogTitle, DialogContent, Dia
 import Box from '@mui/material/Box';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import TelegramIcon from '@mui/icons-material/Telegram';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import Skeleton from '@mui/material/Skeleton';
 import PaymentIcon from '@mui/icons-material/Payment';
@@ -17,7 +18,6 @@ import { VideoService } from '../services/VideoService';
 import { useSiteConfig } from '../context/SiteConfigContext';
 import { StripeService } from '../services/StripeService';
 import MultiVideoPreview from './MultiVideoPreview';
-import ChatButton from './ChatButton';
 
 interface VideoCardProps {
   video: {
@@ -49,7 +49,7 @@ const VideoCard: FC<VideoCardProps> = ({ video }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isThumbnailLoading, setIsThumbnailLoading] = useState(true);
   const [thumbnailError, setThumbnailError] = useState(false);
-  const { telegramUsername, zangiUrl, stripePublishableKey, cryptoWallets } = useSiteConfig();
+  const { telegramUsername, stripePublishableKey, cryptoWallets } = useSiteConfig();
   const [isStripeLoading, setIsStripeLoading] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [selectedCryptoWallet, setSelectedCryptoWallet] = useState('');
@@ -591,12 +591,17 @@ I'm sending the payment from my wallet. Please confirm the transaction and provi
           {/* Payment buttons only if not free */}
           {!video.is_free && (
             <>
-              <ChatButton
-                telegramUrl={telegramHref}
-                zangiUrl={zangiUrl}
+              <Button
                 variant="outlined"
+                color="primary"
                 fullWidth
-              />
+                startIcon={<TelegramIcon />}
+                href={telegramHref}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Telegram
+              </Button>
               <Button
                 variant="contained"
                 color="primary"
@@ -683,7 +688,7 @@ I'm sending the payment from my wallet. Please confirm the transaction and provi
               variant="contained"
               fullWidth
               size="large"
-              startIcon={<PaymentIcon />}
+              startIcon={<TelegramIcon />}
               onClick={handlePayPalPayment}
               disabled={!telegramUsername}
               sx={{
@@ -702,7 +707,7 @@ I'm sending the payment from my wallet. Please confirm the transaction and provi
                 }
               }}
             >
-              💰 Pay with PayPal (via Chat)
+              💰 Pay with PayPal (via Telegram)
             </Button>
 
             {/* Crypto Payment */}

@@ -50,31 +50,21 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     palette: {
       mode,
       primary: {
-        main: mode === 'dark' ? '#EF5350' : '#D32F2F',
-        light: '#FF6659',
-        dark: '#B71C1C',
+        main: '#0D47A1',
       },
       secondary: {
-        main: mode === 'dark' ? '#FF6E9C' : '#F06292',
-        light: '#FF9EC3',
-        dark: '#C2185B',
+        main: '#1565C0',
       },
       background: {
-        default: mode === 'dark' ? '#0A0A0F' : '#F8F7FC',
-        paper: mode === 'dark' ? '#1A1A24' : '#FFFFFF',
+        default: mode === 'dark' ? '#000000' : '#f5f8ff',
+        paper: mode === 'dark' ? '#1a1a1a' : '#ffffff',
       },
       text: {
         primary: mode === 'dark' ? '#FFFFFF' : '#111111',
-        secondary: mode === 'dark' ? '#B4B4C8' : '#5F5F7A',
+        secondary: mode === 'dark' ? '#d32f2f' : '#555555',
       },
       error: {
-        main: '#FF1744',
-      },
-      success: {
-        main: '#00E676',
-      },
-      warning: {
-        main: '#FFD600',
+        main: '#FF0000', // Pure red for errors
       },
     },
     typography: {
@@ -102,62 +92,25 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       MuiButton: {
         styleOverrides: {
           root: {
-            borderRadius: 8,
-            padding: '10px 24px',
-            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-            fontWeight: 600,
-            textTransform: 'none',
-            fontSize: '0.95rem',
-          },
-          contained: {
-            background: mode === 'dark'
-              ? 'linear-gradient(135deg, #EF5350 0%, #E53935 100%)'
-              : 'linear-gradient(135deg, #D32F2F 0%, #F44336 100%)',
-            boxShadow: '0 4px 15px rgba(211,47,47,0.4)',
-            '&:hover': {
-              background: mode === 'dark'
-                ? 'linear-gradient(135deg, #FF6659 0%, #EF5350 100%)'
-                : 'linear-gradient(135deg, #F44336 0%, #FF5252 100%)',
-              boxShadow: '0 6px 20px rgba(211,47,47,0.6)',
-              transform: 'translateY(-2px)',
-            },
-          },
-          outlined: {
-            borderWidth: '2px',
-            borderColor: mode === 'dark' ? '#EF5350' : '#D32F2F',
-            color: mode === 'dark' ? '#EF5350' : '#D32F2F',
-            '&:hover': {
-              borderWidth: '2px',
-              background: mode === 'dark'
-                ? 'linear-gradient(135deg, #EF5350 0%, #E53935 100%)'
-                : 'linear-gradient(135deg, #D32F2F 0%, #F44336 100%)',
-              color: '#FFFFFF',
-              transform: 'translateY(-2px)',
-            },
+            borderRadius: 6,
+            padding: '8px 20px',
+            transition: 'all 0.3s ease',
           },
         },
       },
       MuiCard: {
         styleOverrides: {
           root: {
-            borderRadius: 12,
-            backgroundColor: mode === 'dark' ? '#1A1A24' : '#FFFFFF',
-            transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease',
-            border: mode === 'dark' 
-              ? '1px solid rgba(239,83,80,0.25)' 
-              : '1px solid rgba(211,47,47,0.2)',
-            boxShadow: mode === 'dark' 
-              ? '0 4px 16px rgba(239,83,80,0.2)' 
-              : '0 4px 16px rgba(211,47,47,0.12)',
+            borderRadius: 8,
+            backgroundColor: mode === 'dark' ? '#1a1a1a' : '#ffffff',
+            transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
+            border: mode === 'dark' ? '1px solid rgba(33, 150, 243, 0.15)' : '1px solid rgba(13,71,161,0.12)',
+            boxShadow: mode === 'dark' ? '0 4px 16px rgba(0,0,0,0.5)' : '0 4px 12px rgba(13,71,161,0.06)',
             '&:hover': {
-              transform: 'translateY(-8px) scale(1.02)',
-              zIndex: 10,
-              borderColor: mode === 'dark' 
-                ? 'rgba(239,83,80,0.7)' 
-                : 'rgba(211,47,47,0.5)',
-              boxShadow: mode === 'dark' 
-                ? '0 20px 40px rgba(239,83,80,0.5), 0 0 0 1px rgba(239,83,80,0.4)' 
-                : '0 20px 40px rgba(211,47,47,0.35), 0 0 0 1px rgba(211,47,47,0.25)',
+              transform: 'translateY(-4px)',
+              zIndex: 1,
+              borderColor: mode === 'dark' ? 'rgba(33, 150, 243, 0.4)' : 'rgba(13,71,161,0.3)',
+              boxShadow: mode === 'dark' ? '0 12px 32px rgba(33, 150, 243, 0.2)' : '0 10px 24px rgba(13,71,161,0.12)',
             },
           },
         },
@@ -165,51 +118,19 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       MuiAppBar: {
         styleOverrides: {
           root: {
-            backgroundColor: mode === 'dark' ? '#1a1a1a' : '#ffffff',
+            backgroundColor: mode === 'dark' ? 'rgba(26, 26, 26, 0.95)' : '#ffffff',
             color: mode === 'dark' ? '#ffffff' : '#111111',
-            boxShadow: mode === 'dark' ? '0 2px 8px rgba(0, 0, 0, 0.3)' : '0 2px 8px rgba(0, 0, 0, 0.08)',
+            boxShadow: mode === 'dark' ? '0 2px 16px rgba(0, 0, 0, 0.4)' : '0 2px 8px rgba(0, 0, 0, 0.08)',
+            backdropFilter: 'blur(10px)',
+            borderBottom: mode === 'dark' ? '1px solid rgba(33, 150, 243, 0.1)' : '1px solid rgba(0,0,0,0.06)',
           },
         },
       },
       MuiIconButton: {
         styleOverrides: {
           root: {
-            transition: 'all 0.3s ease',
             '&:hover': {
-              backgroundColor: mode === 'dark' 
-                ? 'rgba(239,83,80,0.2)' 
-                : 'rgba(211,47,47,0.15)',
-              transform: 'scale(1.1)',
-            }
-          }
-        }
-      },
-      MuiChip: {
-        styleOverrides: {
-          root: {
-            fontWeight: 600,
-            transition: 'all 0.3s ease',
-          },
-          filled: {
-            background: mode === 'dark'
-              ? 'linear-gradient(135deg, #EF5350 0%, #E53935 100%)'
-              : 'linear-gradient(135deg, #D32F2F 0%, #F44336 100%)',
-            color: '#FFFFFF',
-            boxShadow: '0 2px 8px rgba(211,47,47,0.3)',
-            '&:hover': {
-              boxShadow: '0 4px 12px rgba(211,47,47,0.4)',
-            }
-          },
-          outlined: {
-            borderColor: mode === 'dark' ? 'rgba(239,83,80,0.6)' : 'rgba(211,47,47,0.5)',
-            color: mode === 'dark' ? '#EF5350' : '#D32F2F',
-            borderWidth: '1.5px',
-            backdropFilter: 'blur(10px)',
-            '&:hover': {
-              borderColor: mode === 'dark' ? '#EF5350' : '#D32F2F',
-              backgroundColor: mode === 'dark' 
-                ? 'rgba(239,83,80,0.15)' 
-                : 'rgba(211,47,47,0.08)',
+              backgroundColor: 'rgba(211, 47, 47, 0.1)',
             }
           }
         }
